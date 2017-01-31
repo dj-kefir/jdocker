@@ -1,16 +1,38 @@
 package ru.tutorials.jdocker;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.tutorials.jdocker.models.User;
+import ru.tutorials.jdocker.repositories.UserRepository;
+
+import java.util.stream.Stream;
 
 @RestController
 @SpringBootApplication
+@Slf4j
 public class Application {
+
+    @Autowired
+    UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    @Bean
+    CommandLineRunner initDb() {
+        return (args) -> {
+            Stream.of(User.builder().name("Igor").build(),
+                    User.builder().name("Alexandr").build()).forEach(userRepository::save);
+
+            log.info("БД проинициаизирована!");
+        };
     }
 
     @RequestMapping("/")
