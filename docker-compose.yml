@@ -1,4 +1,4 @@
-demoApp:
+demoApp: # docker run -p 176.112.222.8:8080:8080 --link mysql:mysql jdocker/app
   image: jdocker/app
   links:
     - myslqdb
@@ -6,7 +6,7 @@ demoApp:
     - "8080:8080"
   volumes:
     - ./app:/app
-myslqdb: # или через консоль: docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_USER=dev -e MYSQL_PASSWORD=123456 -e MYSQL_DATABASE=myapp -d mysql:5.7
+myslqdb: # или через консоль: docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_USER=iozol -e MYSQL_PASSWORD=123456 -e MYSQL_DATABASE=test -d mysql:5.7
   image: mysql:5.7
   ports:
     - "3306:3306"
