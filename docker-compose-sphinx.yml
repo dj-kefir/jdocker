@@ -6,6 +6,7 @@
       - ./sphinx/sphinx.conf:/usr/local/etc/sphinx.conf
       - ./sphinx/rotate-all.sh:/usr/local/etc/rotate-all.sh
       - ./sphinx:/var/lib/sphinx/source/
+      - ./sphinx:/var/lib/sphinx/
 
       - ./.data/sphinx/data/diz:/var/diz/sphinx
       - ./.data/sphinx/data/run:/var/run/sphinx
