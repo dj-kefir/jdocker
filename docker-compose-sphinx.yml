@@ -1,6 +1,6 @@
   sphinx:
     image: leodido/sphinxsearch:2.1.9
-    command: ./bin/searchd.sh
+    command: /usr/local/etc/rotate-all.sh
 
     volumes:
       - ./sphinx/sphinx.conf:/usr/local/etc/sphinx.conf
