@@ -11,6 +11,7 @@ services:
       - "8080:8080"
       - "8000:8000"
     volumes:
+      # HOST_DIR:CONTAINER_DIR
       - ./app:/app
     environment:
           SPRING_DATASOURCE_URL: jdbc:mysql://myslqdb/test?autoReconnect=true&useSSL=false # mysql_host = myslqdb !!!
@@ -32,10 +33,13 @@ services:
       MYSQL_USER: iozol
       MYSQL_PASSWORD: 123456
       MYSQL_DATABASE: test
-sphinx:
-    image: centurylink/sphinx:2.1.9
+  # docker run -i -t leodido/sphinxsearch:2.1.9 /bin/bash
+  # docker run -i -t -v /root/test/jdocker/.data/sphinx:/usr/local/etc leodido/sphinxsearch:2.1.9
+  sphinx:
+    image: leodido/sphinxsearch:2.1.9
     volumes:
-        - "./.data/sphinx:/usr/local/etc"
+        - "./.data/sphinx/conf:/usr/local/etc"
+        - "./.data/sphinx/data:/var/lib/sphinx/source"
     ports:
         - "9306:9306"
 
