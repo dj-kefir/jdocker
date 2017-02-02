@@ -37,10 +37,19 @@ services:
   # docker run -i -t -v /root/test/jdocker/.data/sphinx:/usr/local/etc leodido/sphinxsearch:2.1.9
   sphinx:
     image: leodido/sphinxsearch:2.1.9
+    command: ./bin/searchd.sh
+#    links:
+#        - mysql:mysql
     volumes:
-        - "./.data/sphinx/conf:/usr/local/etc"
-        - "./.data/sphinx/data:/var/lib/sphinx/source"
+      - ./.data/sphinx/conf/sphinx.conf:/usr/local/etc/sphinx.conf
+      - ./.data/sphinx/data/diz:/var/diz/sphinx
+      - ./.data/sphinx/data/run:/var/run/sphinx
+      - ./.data/sphinx/data/lib:/var/lib/sphinx
+      - ./.data/sphinx/data/log:/var/log/sphinx
+      - ./.data/sphinx/data/idx:/var/idx/sphinx
+      - ./.data/sphinx/data/source:/var/lib/sphinx/source/
     ports:
         - "9306:9306"
 
 #http://zoltanaltfatter.com/2016/10/17/dockerized-microservices-with-datastore/
+#https://gist.github.com/fntlnz/943608eb2d892aa14ece

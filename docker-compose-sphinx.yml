@@ -1,9 +1,13 @@
-version: '2'
-services:
   sphinx:
     image: leodido/sphinxsearch:2.1.9
+    command: ./bin/searchd.sh
     volumes:
-        - "./.data/sphinx/conf:/usr/local/etc"
-        - "./.data/sphinx/data:/var/lib/sphinx/source"
+      - ./.data/sphinx/conf/sphinx.conf:/usr/local/etc/sphinx.conf
+      - ./.data/sphinx/data/diz:/var/diz/sphinx
+      - ./.data/sphinx/data/run:/var/run/sphinx
+      - ./.data/sphinx/data/lib:/var/lib/sphinx
+      - ./.data/sphinx/data/log:/var/log/sphinx
+      - ./.data/sphinx/data/idx:/var/idx/sphinx
+      - ./.data/sphinx/data/source:/var/lib/sphinx/source/
     ports:
         - "9307:9307"
