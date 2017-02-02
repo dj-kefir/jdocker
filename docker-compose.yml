@@ -1,5 +1,5 @@
 demoApp: # docker run -p 176.112.222.8:8080:8080 --link mysql:mysql jdocker/app
-  image: jdocker/app
+  build: jdocker/app
   links:
     - myslqdb
   ports:
@@ -17,9 +17,9 @@ myslqdb: # или через консоль: docker run --name mysql -p 3306:330
     MYSQL_USER: iozol
     MYSQL_PASSWORD: 123456
     MYSQL_DATABASE: test
-#sphinx:
-#    image: centurylink/sphinx:2.1.9.01
-#    volumes:
-#        - $PWD:/usr/local/etc
-#    ports:
-#        - "9306:9306"
+sphinx:
+    image: centurylink/sphinx:2.1.9.01
+    volumes:
+        - $PWD:/usr/local/etc
+    ports:
+        - "9306:9306"
