@@ -1,5 +1,5 @@
 sphinx:
-    image: centurylink/sphinx:2.2.9
+    imageleodido/sphinxsearch:2.1.9
     volumes:
         - $PWD:/usr/local/etc
     ports:
