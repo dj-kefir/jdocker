@@ -1,0 +1,6 @@
+sphinx:
+    image: centurylink/sphinx:2.2.9
+    volumes:
+        - $PWD:/usr/local/etc
+    ports:
+        - "9306:9306"
