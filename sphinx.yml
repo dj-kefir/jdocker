@@ -1,4 +1,6 @@
 sphinx:
+    stdin_open: true
+    tty: true
     image: leodido/sphinxsearch:2.1.9
     volumes:
         - $PWD/sphinx:/usr/local/etc
