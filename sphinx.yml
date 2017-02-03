@@ -1,6 +1,6 @@
 sphinx:
-    imageleodido/sphinxsearch:2.1.9
+    image: leodido/sphinxsearch:2.1.9
     volumes:
-        - $PWD:/usr/local/etc
+        - $PWD/sphinx:/usr/local/etc
     ports:
         - "9306:9306"
