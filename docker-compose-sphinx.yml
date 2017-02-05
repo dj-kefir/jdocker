@@ -1,6 +1,11 @@
   sphinx:
-    image: leodido/sphinxsearch:2.1.9
-    command: /usr/local/etc/rotate-all.sh
+    image: leodido/sphinxsearch:2.2.9
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/sh
+    #command: /bin/sh
+    #command: ./bin/searchd.sh
+    #command: /usr/local/etc/rotate-all.sh
 
     volumes:
       - ./sphinx/sphinx.conf:/usr/local/etc/sphinx.conf
@@ -15,3 +20,23 @@
       - ./.data/sphinx/data/idx:/var/idx/sphinx
     ports:
         - "9307:9307"
+
+        apt-get update
+        apt-get install software-properties-common
+        apt-get install python3-software-properties
+        apt-get install python-software-properties
+
+        add-apt-repository ppa:builds/sphinxsearch-rel22
+        apt-get update
+        apt-get install sphinxsearch
+
+
+
+docker run --name sphinx -d sem/sphinxsearch
+
+        docker run --name sphinx -d \
+          --net sphinx_net \
+          -v /host/to/path/data:/var/lib/sphinxsearch/data
+          -e "SPHINX_MODE=indexing" \
+          -e "SPHINX_CONF=/etc/sphinxsearch/sphinx_pgsql.conf" \
+          romeoz/docker-sphinxsearch

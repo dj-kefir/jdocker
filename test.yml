@@ -1,0 +1,17 @@
+  sphinx:
+    image: leodido/sphinxsearch:2.2.9
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+#    links:
+#        - mysql:mysql
+    volumes:
+      - $PWD/.data/sphinx/conf:/usr/local/etc
+      - $PWD/.data/sphinx/data/diz:/var/diz/sphinx
+      - $PWD/.data/sphinx/data/run:/var/run/sphinx
+      - $PWD/.data/sphinx/data/lib:/var/lib/sphinx
+      - $PWD/.data/sphinx/data/log:/var/log/sphinx
+      - $PWD/.data/sphinx/data/idx:/var/idx/sphinx
+      - $PWD/.data/sphinx/data/source:/var/lib/sphinx/source/
+    ports:
+        - "9306:9306"
