@@ -33,6 +33,7 @@ services:
       MYSQL_USER: iozol
       MYSQL_PASSWORD: 123456
       MYSQL_DATABASE: test
+
   # docker run -i -t leodido/sphinxsearch:2.2.9 /bin/bash
   # docker run -i -t -v /root/test/jdocker/.data/sphinx:/usr/local/etc leodido/sphinxsearch:2.2.9
   sphinx:

@@ -26,7 +26,6 @@ RUN	buildDeps='software-properties-common python-software-properties' \
 	&& mv -f /etc/sphinxsearch/sphinx.conf /etc/sphinxsearch/origin.sphinx.conf \
 	&& apt-get purge -y --auto-remove $buildDeps \
 	&& rm -rf /var/lib/apt/lists/* \
-    && chmod 755 /sbin/entrypoint.sh \
     && chmod 755 /sbin/startup.sh \
 	# Forward sphinx logs to docker log collector
 	&& ln -sf /dev/stdout ${SPHINX_LOG_DIR}/searchd.log \
