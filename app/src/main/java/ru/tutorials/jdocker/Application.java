@@ -2,9 +2,12 @@ package ru.tutorials.jdocker;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +16,8 @@ import ru.tutorials.jdocker.repositories.UserRepository;
 
 import java.util.stream.Stream;
 
+@EnableEurekaClient
+@RefreshScope
 @RestController
 @SpringBootApplication
 @Slf4j
@@ -35,9 +40,12 @@ public class Application {
         };
     }
 
+    @Value("${myProperty}")
+    String myProperty;
+
     @RequestMapping("/")
     public String isAlive() {
-        return "it's ok";
+        return "it's ok, myProperty = " + myProperty ;
     }
 
 }
