@@ -1,0 +1,13 @@
+spring:
+  profiles: development
+myProperty: bla-bla-bla
+spring:
+  jpa:
+    database: MYSQL
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&maxAllowedPacket=512000&rewriteBatchedStatements=true
+    username: iozol
+    password: 123456
+    driverClassName: com.mysql.jdbc.Driver
