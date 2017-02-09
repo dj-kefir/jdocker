@@ -17,7 +17,6 @@ import ru.tutorials.jdocker.repositories.UserRepository;
 import java.util.stream.Stream;
 
 @EnableEurekaClient
-@RefreshScope
 @RestController
 @SpringBootApplication
 @Slf4j
@@ -40,12 +39,21 @@ public class Application {
         };
     }
 
-    @Value("${myProperty}")
-    String myProperty;
-
     @RequestMapping("/")
     public String isAlive() {
-        return "it's ok, myProperty = " + myProperty ;
+        return "it's ok";
     }
 
+    @RefreshScope
+    @RestController
+    class MessageRestController {
+
+        @Value("${myProperty:Hello default}")
+        private String myProperty;
+
+        @RequestMapping("/message")
+        String getMessage() {
+            return this.myProperty;
+        }
+    }
 }

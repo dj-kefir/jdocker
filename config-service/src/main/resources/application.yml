@@ -2,9 +2,17 @@ spring:
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:/shared
+        git:
+          uri: C:\1\test
+#          uri: C:\\Users\\ozol\\Desktop\\delete\\sem-config
+#          uri: https://github.com/dj-kefir/sem-config
+#          username: xxxx
+#          password: xxxx
   profiles:
        active: native
 server:
     port: 8888
+logging:
+  levels:
+    org.springframework.boot.env.PropertySourcesLoader: TRACE
+    org.springframework.cloud.config.server: DEBUG
