@@ -1,11 +1,13 @@
 package ru.tutorials.jdocker;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.tutorials.jdocker.models.User;
 import ru.tutorials.jdocker.repositories.UserRepository;
 
+import java.net.URI;
 import java.util.stream.Stream;
 
+@EnableCircuitBreaker
 @EnableEurekaClient
 @RestController
 @SpringBootApplication
@@ -42,6 +46,16 @@ public class Application {
     @RequestMapping("/")
     public String isAlive() {
         return "it's ok";
+    }
+
+    public String fallbackMethod() {
+        return "Всё пропало";
+    }
+
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
+    @RequestMapping("/to-read")
+    public String toRead() {
+        throw new RuntimeException();
     }
 
     @RefreshScope

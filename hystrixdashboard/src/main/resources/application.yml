@@ -1,0 +1,4 @@
+info:
+  component: Hystrix Dashboard
+server:
+  port: 7777
