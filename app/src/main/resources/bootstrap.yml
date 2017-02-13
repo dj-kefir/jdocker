@@ -3,5 +3,5 @@ spring:
     name: app-service
   cloud:
     config:
-      uri: http://10.0.7.16:${config.port:8888}
+      uri: http://${config.uri:localhost}:${config.port:8888}
       fail-fast: true
