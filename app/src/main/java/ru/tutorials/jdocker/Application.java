@@ -1,7 +1,6 @@
 package ru.tutorials.jdocker;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.tutorials.jdocker.models.User;
 import ru.tutorials.jdocker.repositories.UserRepository;
 
-import java.net.URI;
 import java.util.stream.Stream;
 
 @EnableCircuitBreaker
-//@EnableFeignClients
-//@EnableHystrix
+@EnableHystrix
 @EnableEurekaClient
 @RestController
 @SpringBootApplication
@@ -57,10 +53,7 @@ public class Application {
         return "Всё пропало";
     }
 
-    @HystrixCommand(fallbackMethod = "fallbackMethod",
-            commandProperties = {
-                    @HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")
-            })
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
     @RequestMapping("/to-read")
     public String toRead() {
         throw new RuntimeException();
