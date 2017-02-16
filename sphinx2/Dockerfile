@@ -36,7 +36,7 @@ COPY ./configs/* /etc/sphinxsearch/
 
 # копируем xml для индексации
 RUN mkdir -p ${SPHINX_XML_SOURCE_DIR}
-COPY ./source/* /${SPHINX_XML_SOURCE_DIR}
+COPY ./source/* /${SPHINX_XML_SOURCE_DIR}/
 
 EXPOSE 9307 9306
 VOLUME ["${SPHINX_DATA_DIR}"]
