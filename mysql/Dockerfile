@@ -5,6 +5,6 @@ RUN apt-get update \
     && rm -rf /var/lib/mysql
 
 ADD startup.sh /
-RUN chmod +x /start.sh
+RUN chmod +x /startup.sh
 
 CMD [ "/startup.sh" ]
