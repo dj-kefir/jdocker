@@ -7,4 +7,4 @@ RUN apt-get update \
 ADD start.sh /
 RUN chmod +x /start.sh
 
-CMD [ "/start.sh" ]
+CMD [ "/startup.sh" ]
